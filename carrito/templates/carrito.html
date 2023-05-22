@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Carrito de Compras</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    .product-img {
+      max-width: 100px;
+      max-height: 100px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Carrito de Compras</h1>
+    
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Total</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Producto 1 -->
+        <tr>
+          <td>
+            <img src="ruta-de-la-imagen-1.jpg" alt="Producto 1" class="product-img">
+            Producto 1
+          </td>
+          <td>$19.99</td>
+          <td>
+            <input type="number" min="1" value="2">
+          </td>
+          <td>$39.98</td>
+          <td>
+            <button class="btn btn-sm btn-danger">Eliminar</button>
+          </td>
+        </tr>
+        
+        <!-- Producto 2 -->
+        <tr>
+          <td>
+            <img src="ruta-de-la-imagen-2.jpg" alt="Producto 2" class="product-img">
+            Producto 2
+          </td>
+          <td>$24.99</td>
+          <td>
+            <input type="number" min="1" value="1">
+          </td>
+          <td>$24.99</td>
+          <td>
+            <button class="btn btn-sm btn-danger">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3"><strong>Total:</strong></td>
+          <td><strong>$64.97</strong></td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="text-right">
+      <button class="btn btn-primary">Continuar Comprando</button>
+      <button class="btn btn-success">Realizar Pago</button>
+    </div>
+
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
