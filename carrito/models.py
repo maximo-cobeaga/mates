@@ -15,5 +15,8 @@ class CarritoItem(models.Model):
     cantidad = models.IntegerField()
     activo = models.BooleanField(default=True)
 
-    def __str__(self):
+    def subtotal(self):
+        return self.producto.precio_ars*self.cantidad
+
+    def __unicode__(self):
         return self.producto

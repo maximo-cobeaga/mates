@@ -24,5 +24,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.tienda, name='tienda'),
+    path('<slug:categoria_slug>', views.tienda , name='produtos_categoria'),
+    path('<slug:categoria_slug>/<slug:producto_slug>/', views.detalle_producto , name='detalle_producto'),
     path('carrito/', include('carrito.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

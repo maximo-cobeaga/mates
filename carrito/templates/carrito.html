@@ -1,81 +1,105 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Carrito de Compras</title>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <style>
-    .product-img {
-      max-width: 100px;
-      max-height: 100px;
-    }
-  </style>
-</head>
-<body>
+{% extends 'base.html' %}
 
-  <div class="container">
-    <h1>Carrito de Compras</h1>
+{% block content %}
+<section class="section-content padding-y bg">
+    <div class="container">
     
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Producto</th>
-          <th>Precio</th>
-          <th>Cantidad</th>
-          <th>Total</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Producto 1 -->
-        <tr>
-          <td>
-            <img src="ruta-de-la-imagen-1.jpg" alt="Producto 1" class="product-img">
-            Producto 1
-          </td>
-          <td>$19.99</td>
-          <td>
-            <input type="number" min="1" value="2">
-          </td>
-          <td>$39.98</td>
-          <td>
-            <button class="btn btn-sm btn-danger">Eliminar</button>
-          </td>
-        </tr>
-        
-        <!-- Producto 2 -->
-        <tr>
-          <td>
-            <img src="ruta-de-la-imagen-2.jpg" alt="Producto 2" class="product-img">
-            Producto 2
-          </td>
-          <td>$24.99</td>
-          <td>
-            <input type="number" min="1" value="1">
-          </td>
-          <td>$24.99</td>
-          <td>
-            <button class="btn btn-sm btn-danger">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td colspan="3"><strong>Total:</strong></td>
-          <td><strong>$64.97</strong></td>
-          <td></td>
-        </tr>
-      </tfoot>
+    <!-- ============================ COMPONENT 1 ================================= -->
+    {% if not carrito_items %}
+    <div class="p-5">  
+        <h2 class="text-center">El carrito de compras esta Vacio</h2>
+        <br>
+        <div class="text-center">
+            <a class="btn btn-primary" href="{% url 'tienda' %}">Continua Comprando</a>
+        </div>
+    </div>  
+    {% else %}
+    <div class="row">
+        <aside class="col-lg-9">
+    <div class="card">
+    <table class="table table-borderless table-shopping-cart">
+    <thead class="text-muted">
+    <tr class="small text-uppercase">
+      <th scope="col">Product</th>
+      <th scope="col" width="120">Cantidad</th>
+      <th scope="col" width="120">Precio</th>
+      <th scope="col" class="text-right" width="200"> </th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in carrito_items %}
+    <tr>
+        <td>
+            <figure class="itemside align-items-center d-flex">
+                <div class="aside"><img src="{{ item.producto.imagen.url }}" height="100" width="100" class="img-sm" style="object-fit: cover;"></div>
+                <strong class="info">
+                    <a href="{{ item.producto.get_url }}" class="title text-dark ps-4">{{ item.producto.titulo }}</a>
+                </strong>
+            </figure>
+        </td>
+        <td> 
+            <!-- col.// -->
+                        <div class="col"> 
+                            <div class="input-group input-spinner">
+                                <div class="input-group-prepend">
+                                <a href="{% url 'quitar_carrito' item.producto.id %}" class="btn btn-light" type="button" id="button-plus"> - </a>
+                                </div>
+                                <input type="text" class="form-control"  value="{{ item.cantidad }}">
+                                <div class="input-group-append">
+                                <a href="{% url 'agregar_carrito' item.producto.id %}" class="btn btn-light" type="button" id="button-minus"> + </a>
+                                </div>
+                            </div> <!-- input-group.// -->
+                        </div> <!-- col.// -->
+        </td>
+        <td> 
+            <div class="price-wrap"> 
+                <var class="price">${{ item.subtotal }}</var> 
+                <small class="text-muted"> ${{ item.producto.precio_ars }} cada uno </small> 
+            </div> <!-- price-wrap .// -->
+        </td>
+        <td class="text-right"> 
+        <a href="{% url 'borrar_carrito' item.producto.id %}" class="btn btn-danger"> Eliminar</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
     </table>
-
-    <div class="text-right">
-      <button class="btn btn-primary">Continuar Comprando</button>
-      <button class="btn btn-success">Realizar Pago</button>
-    </div>
-
-  </div>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+    </div> <!-- card.// -->
+    
+        </aside> <!-- col.// -->
+        <aside class="col-lg-3">
+    
+            <div class="card">
+            <div class="card-body">
+                <dl class="dlist-align">
+                  <dt>Precio Total:</dt>
+                  <dd class="text-right">${{total}}</dd>
+                </dl>
+                <dl class="dlist-align">
+                  <dt>Envio: </dt>
+                  <dd class="text-right"> ${{ envio }}</dd>
+                </dl>
+                <dl class="dlist-align">
+                  <dt>Total:</dt>
+                  <dd class="text-right text-dark b"><strong>${{totaltotal}}</strong></dd>
+                </dl>
+                <hr>
+                <p class="text-center mb-3">
+                    <img src="./images/misc/payments.png" height="26">
+                </p>
+                <a href="./place-order.html" class="btn btn-primary btn-block"> Pagar </a>
+                <a href="{% url 'tienda' %}" class="btn btn-light btn-block">Continua comprando</a>
+            </div> <!-- card-body.// -->
+            </div> <!-- card.// -->
+    
+    </aside> <!-- col.// -->
+    
+    
+    </div> <!-- row.// -->
+    {% endif %}
+    <!-- ============================ COMPONENT 1 END .// ================================= -->
+    
+    </div> <!-- container .//  -->
+    </section>
+    <!-- ========================= SECTION CONTENT END// ========================= -->
+{% endblock %}
