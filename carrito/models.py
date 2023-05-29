@@ -14,9 +14,17 @@ class CarritoItem(models.Model):
     carrito = models.ForeignKey(Carrito, on_delete=models.CASCADE)
     cantidad = models.IntegerField()
     activo = models.BooleanField(default=True)
-
+    
+    def en_oferta(self):
+        if self.producto.oferta != 0:
+            precio_total = (self.producto.precio_ars * (100 - self.producto.oferta)) /100
+            return precio_total
+    
     def subtotal(self):
-        return self.producto.precio_ars*self.cantidad
-
+        if self.producto.oferta != 0:
+            return self.en_oferta()*self.cantidad
+        else:
+            return self.producto.precio_ars*self.cantidad
+    
     def __unicode__(self):
         return self.producto

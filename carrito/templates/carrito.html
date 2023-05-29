@@ -54,7 +54,13 @@
         <td> 
             <div class="price-wrap"> 
                 <var class="price">${{ item.subtotal }}</var> 
+                
+                {% if item.producto.oferta != 0 %}
+                <small class="text-muted"> ${{ item.en_oferta }} cada uno </small> 
+                {% else %}
                 <small class="text-muted"> ${{ item.producto.precio_ars }} cada uno </small> 
+                {% endif %}
+            
             </div> <!-- price-wrap .// -->
         </td>
         <td class="text-right"> 

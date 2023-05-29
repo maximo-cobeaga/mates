@@ -5,6 +5,8 @@ from carrito.views import _carrito_id
 
 
 # Create your views here.
+
+
 def tienda(request, categoria_slug=None):
 
     categorias = None
@@ -13,8 +15,12 @@ def tienda(request, categoria_slug=None):
     if categoria_slug != None:
         categorias = get_object_or_404(Categoria, slug=categoria_slug)
         productos = Productos.objects.filter(categoria=categorias, active=True)
+        counter = 0
+        for p in productos:
+            counter += 1
         return render(request,'tienda.html', {
-            'productos':productos
+            'productos':productos,
+            'counter': counter,
         })
     else:
         try:
@@ -27,7 +33,7 @@ def tienda(request, categoria_slug=None):
         except:
             productos = Productos.objects.filter(active=True)
             return render(request,'tienda.html',{
-                'banners':banners
+                'banners':banners,
             })
         
 
@@ -38,18 +44,9 @@ def detalle_producto(request,categoria_slug ,producto_slug):
 
     except Exception as e:
         raise e
-    if producto.oferta != 0:
-        precio_oferta = (producto.precio_ars * (100 - producto.oferta))/100
-        context = {
-        'producto': producto,
-        'en_carrito':en_carrito,
-        'ofert':True,
-        'precio_oferta':precio_oferta,
-        }
-    else:
-        context = {
-            'producto': producto,
-            'en_carrito':en_carrito,
-            'ofert': False
-        }
+    
+    context = {
+    'producto': producto,
+    'en_carrito':en_carrito,
+    }
     return render(request, 'detalle_producto.html', context)

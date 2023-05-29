@@ -59,7 +59,11 @@ def carrito(request, total=0, cantidad=0, carrito_items=None):
         carrito = Carrito.objects.get(carrito_id=_carrito_id(request))
         carrito_items = CarritoItem.objects.filter(carrito=carrito, activo=True)
         for carrito_item in carrito_items:
-            total += (carrito_item.producto.precio_ars * carrito_item.cantidad) 
+            if carrito_item.producto.oferta > 0:
+                total += (((carrito_item.producto.precio_ars * (100 - carrito_item.producto.oferta))/100) * carrito_item.cantidad)
+            else:
+                total += (carrito_item.producto.precio_ars * carrito_item.cantidad)
+             
             cantidad += carrito_item.cantidad
         envio = 1500
         totaltotal = total + envio

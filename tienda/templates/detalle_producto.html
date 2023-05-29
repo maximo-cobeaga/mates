@@ -10,9 +10,9 @@
                 <h1 class="display-5 fw-bolder">{{producto.titulo}}</h1>
                 <div class="fs-5 mb-5">
 
-                    {% if ofert %}
-                    <span class="text-decoration-line-through">${{producto.precio_ars}}</span> 
-                    <span>${{precio_oferta}}</span>
+                    {% if producto.oferta >= 0 %}
+                        <span class="text-decoration-line-through">${{producto.precio_ars}}</span> 
+                        <span>${{producto.in_oferta.precio}}</span>
                     {% else %}
                     <span>${{producto.precio_ars}}</span>
                     {% endif %}
