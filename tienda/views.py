@@ -1,8 +1,8 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Productos, Banners, Categoria
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Productos, Banners, Categoria, Moneda
 from carrito.models import  CarritoItem
 from carrito.views import _carrito_id
-
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 
 # Create your views here.
 
@@ -10,7 +10,6 @@ from carrito.views import _carrito_id
 def tienda(request, categoria_slug=None):
 
     categorias = None
-    producto = None
 
     if categoria_slug != None:
         categorias = get_object_or_404(Categoria, slug=categoria_slug)
@@ -26,8 +25,12 @@ def tienda(request, categoria_slug=None):
         try:
             banners = Banners.objects.all()
             productos = Productos.objects.filter(active=True)
+            paginator = Paginator(productos, 12)
+            page = request.GET.get('page')
+            page_producto = paginator.get_page(page)
+
             return render(request,'tienda.html',{
-                'productos': productos,
+                'productos': page_producto,
                 'banners': banners
             })
         except:
@@ -50,3 +53,17 @@ def detalle_producto(request,categoria_slug ,producto_slug):
     'en_carrito':en_carrito,
     }
     return render(request, 'detalle_producto.html', context)
+
+def cambiar_estado(request, moneda):
+    if request.method == 'POST':
+        monedas = Moneda.objects.all()
+        for m in monedas:
+            m.estado = False
+            print(m.titulo, ' - ' , m.estado)
+            
+        moneda = Moneda.objects.get(titulo=moneda)    
+        if moneda.estado == False:
+            moneda.estado = True
+            print('El ',moneda.titulo,' ahora esta ',moneda.estado)
+            return redirect('tienda')
+        return redirect('tienda')

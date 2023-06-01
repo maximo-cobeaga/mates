@@ -1,3 +1,4 @@
+
 from .models import Categoria
 
 def menu_links(request):
