@@ -79,14 +79,14 @@
                                 <div class="d-grid gap-2 col-6 mx-auto w-100">
                                     <form method="POST" action="{% url 'cambiar_estado' 'Dolar' %}">
                                         {% csrf_token %}
-                                        <button>
+                                        <button class="btn btn-outline-primary w-100">
                                            Other Country 
                                         </button>
                                     </form>
 
                                     <form method="POST" action="{% url 'cambiar_estado' 'Ars' %}">
                                         {% csrf_token %}
-                                        <button>
+                                        <button class="btn btn-outline-primary w-100">
                                            Argentina
                                         </button>
                                     </form>

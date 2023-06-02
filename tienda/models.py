@@ -28,17 +28,16 @@ class Productos(models.Model):
 
     def get_url(self):
         return reverse('detalle_producto', args=[self.categoria.slug, self.slug])
-    
-    def in_oferta_ars(self):
-        if self.oferta > 0:
-            precio = round((self.precio_ars * (100 - self.oferta))/ 100)
-            return dict(precio=precio)
+
+    def en_oferta(self):
+        if self.oferta != 0:
+            precio_total = round((self.precio_ars * (100 - self.oferta)) /100)
+            return precio_total
         
-    def in_oferta_usd(self):
-        if self.oferta > 0:
-            precio = round((self.precio_usd * (100 - self.oferta))/ 100)
-            return dict(precio=precio)
-        
+    def en_oferta_usd(self):
+        if self.oferta != 0:
+            precio_total = round((self.precio_usd * (100 - self.oferta)) /100)
+            return precio_total
 
     def __str__(self):
         return self.titulo
