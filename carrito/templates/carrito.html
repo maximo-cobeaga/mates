@@ -20,7 +20,7 @@
     <table class="table table-borderless table-shopping-cart">
     <thead class="text-muted">
     <tr class="small text-uppercase">
-      <th scope="col">Product</th>
+      <th class="text-center" scope="col">Producto</th>
       <th scope="col" width="120">Cantidad</th>
       <th scope="col" width="120">Precio</th>
       <th scope="col" class="text-right" width="200"> </th>
@@ -32,8 +32,8 @@
         <td>
             <figure class="itemside align-items-center d-flex">
                 <div class="aside"><img src="{{ item.producto.imagen.url }}" height="100" width="100" class="img-sm" style="object-fit: cover;"></div>
-                <strong class="info">
-                    <a href="{{ item.producto.get_url }}" class="title text-dark ps-4">{{ item.producto.titulo }}</a>
+                <strong class="info" style="text-align: center;">
+                    <a href="{{ item.producto.get_url }}" class="text-decoration-none text-dark ps-4" >{{ item.producto.titulo }}</a>
                 </strong>
             </figure>
         </td>
@@ -53,12 +53,26 @@
         </td>
         <td> 
             <div class="price-wrap"> 
-                <var class="price">${{ item.subtotal }}</var> 
+                {% if moneda == 'ARS' %}
+                    <var class="price">${{ item.subtotal }}</var> 
+                {% else %}
+                    <var class="price">${{ item.subtotal_usd }}</var> 
+                {% endif %}
                 
+                {% if moneda == 'ARS' %}
                 {% if item.producto.oferta != 0 %}
                 <small class="text-muted"> ${{ item.en_oferta }} cada uno </small> 
                 {% else %}
                 <small class="text-muted"> ${{ item.producto.precio_ars }} cada uno </small> 
+                {% endif %}
+                {% endif %}
+
+                {% if moneda == 'USD' %}
+                {% if item.producto.oferta != 0 %}
+                <small class="text-muted"> ${{ item.en_oferta_usd }} cada uno </small> 
+                {% else %}
+                <small class="text-muted"> ${{ item.producto.precio_usd }} cada uno </small> 
+                {% endif %}
                 {% endif %}
             
             </div> <!-- price-wrap .// -->

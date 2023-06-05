@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from tienda.models import Productos
 from .models import Carrito, CarritoItem
 from django.core.exceptions import ObjectDoesNotExist
+from tienda.models import Moneda
+
 
 # Create your views here.
 
@@ -55,14 +57,26 @@ def borrar_carrito(request, producto_id):
     return redirect('carrito')
 
 def carrito(request, total=0, cantidad=0, carrito_items=None):
+
+    usd = Moneda.objects.get(titulo='Dolar')
+    ars = Moneda.objects.get(titulo='Ars')
+    
+
     try:
         carrito = Carrito.objects.get(carrito_id=_carrito_id(request))
         carrito_items = CarritoItem.objects.filter(carrito=carrito, activo=True)
         for carrito_item in carrito_items:
-            if carrito_item.producto.oferta > 0:
-                total += (((carrito_item.producto.precio_ars * (100 - carrito_item.producto.oferta))/100) * carrito_item.cantidad)
-            else:
-                total += (carrito_item.producto.precio_ars * carrito_item.cantidad)
+            if ars.estado == True:
+                if carrito_item.producto.oferta > 0:
+                    total += (((carrito_item.producto.precio_ars * (100 - carrito_item.producto.oferta))/100) * carrito_item.cantidad)
+                else:
+                    total += (carrito_item.producto.precio_ars * carrito_item.cantidad)
+
+            if usd.estado == True:
+                if carrito_item.producto.oferta > 0:
+                    total += (((carrito_item.producto.precio_usd * (100 - carrito_item.producto.oferta))/100) * carrito_item.cantidad)
+                else:
+                    total += (carrito_item.producto.precio_usd * carrito_item.cantidad)
              
             cantidad += carrito_item.cantidad
         envio = 1500

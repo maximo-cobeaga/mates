@@ -10,11 +10,22 @@
                 <h1 class="display-5 fw-bolder">{{producto.titulo}}</h1>
                 <div class="fs-5 mb-5">
 
-                    {% if producto.oferta >= 0 %}
-                        <span class="text-decoration-line-through">${{producto.precio_ars}}</span> 
-                        <span>${{producto.in_oferta.precio}}</span>
-                    {% else %}
-                    <span>${{producto.precio_ars}}</span>
+                    {% if moneda == 'ARS' %}
+                        {% if producto.oferta != 0 %}
+                            <span class="text-decoration-line-through">${{producto.precio_ars}}</span> 
+                            <span>${{producto.en_oferta}}</span>
+                        {% else %}
+                            <span>${{producto.precio_ars}}</span>
+                        {% endif %}
+                    {% endif %}
+
+                    {% if moneda == 'USD' %}
+                        {% if producto.oferta != 0 %}
+                            <span class="text-decoration-line-through">${{producto.precio_usd}}</span> 
+                            <span>${{producto.en_oferta_usd}}</span>
+                        {% else %}
+                            <span>${{producto.precio_usd}}</span>
+                        {% endif %}
                     {% endif %}
                 
                 </div>
