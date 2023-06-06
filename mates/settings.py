@@ -27,8 +27,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='django-insecure-h($^&erk7l+nk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'RENDER' not in os.environ
 
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
 
 
 # https://docs.djangoproject.com/en/3.0/ref/settings/#allowed-hosts
