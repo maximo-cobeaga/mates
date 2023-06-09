@@ -34,7 +34,6 @@ INSTALLED_APPS = [
     # My Apps
     'tienda',
     'carrito',
-    'storages',
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
