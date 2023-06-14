@@ -51,17 +51,30 @@
                             </div> <!-- input-group.// -->
                         </div> <!-- col.// -->
         </td>
-        <td> 
-            <div class="price-wrap"> 
+        <div class="price-wrap"> 
+            {% if moneda == 'ARS' %}
                 <var class="price">${{ item.subtotal }}</var> 
-                
-                {% if item.producto.oferta != 0 %}
-                <small class="text-muted"> ${{ item.en_oferta }} cada uno </small> 
-                {% else %}
-                <small class="text-muted"> ${{ item.producto.precio_ars }} cada uno </small> 
-                {% endif %}
+            {% else %}
+                <var class="price">${{ item.subtotal_usd }}</var> 
+            {% endif %}
             
-            </div> <!-- price-wrap .// -->
+            {% if moneda == 'ARS' %}
+            {% if item.producto.oferta != 0 %}
+            <small class="text-muted"> ${{ item.en_oferta }} cada uno </small> 
+            {% else %}
+            <small class="text-muted"> ${{ item.producto.precio_ars }} cada uno </small> 
+            {% endif %}
+            {% endif %}
+
+            {% if moneda == 'USD' %}
+            {% if item.producto.oferta != 0 %}
+            <small class="text-muted"> ${{ item.en_oferta_usd }} cada uno </small> 
+            {% else %}
+            <small class="text-muted"> ${{ item.producto.precio_usd }} cada uno </small> 
+            {% endif %}
+            {% endif %}
+        
+        </div> <!-- price-wrap .// -->
         </td>
         <td class="text-right"> 
         <a href="{% url 'borrar_carrito' item.producto.id %}" class="btn btn-danger"> Eliminar</a>
