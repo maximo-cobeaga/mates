@@ -15,7 +15,7 @@ class Categoria(models.Model):
 
 class Productos(models.Model):
     titulo = models.CharField(max_length=100)
-    descripcion = models.TextField(max_length=200, null=True)
+    descripcion = models.TextField(max_length=1000, null=True)
     precio_ars = models.IntegerField()
     precio_usd = models.IntegerField(null=True)
     oferta = models.IntegerField(default=0, null=True)
