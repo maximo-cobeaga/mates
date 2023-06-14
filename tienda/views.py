@@ -20,7 +20,6 @@ def tienda(request, categoria_slug=None):
 
     print(usd.estado)
     print(ars.estado)
-    print(moneda)
 
     categorias = None
     if categoria_slug != None:
