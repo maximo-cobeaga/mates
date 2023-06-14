@@ -1,6 +1,6 @@
 asgiref==3.6.0
 dj-database-url==2.0.0
-Django==4.2.1
+Django==4.2
 django-countries==7.5.1
 fontawesomefree==6.4.0
 gunicorn==20.1.0
