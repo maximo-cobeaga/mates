@@ -91,7 +91,7 @@ import dj_database_url
 DATABASES = {
     'default': dj_database_url.config(
         # Feel free to alter this value to suit your needs.
-        default='postgres://productiondatabase_i02j_user:FBKmAZaVR1ozY26p2COFZoBZPSLpyI7t@dpg-ci1ndk1mbg56beidbn80-a.oregon-postgres.render.com/productiondatabase_i02j',
+        default='postgresql://postgres:postgres@localhost:5432/mysite',
         conn_max_age=600
     )
 }
