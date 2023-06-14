@@ -78,11 +78,14 @@ WSGI_APPLICATION = 'mates.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+import dj_database_url
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        # Feel free to alter this value to suit your needs.
+        default='postgres://productiondatabase_i02j_user:FBKmAZaVR1ozY26p2COFZoBZPSLpyI7t@dpg-ci1ndk1mbg56beidbn80-a.oregon-postgres.render.com/productiondatabase_i02j',
+        conn_max_age=600
+    )
 }
 
 
