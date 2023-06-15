@@ -11,10 +11,22 @@
                 <div class="fs-5 mb-5">
 
                     {% if producto.oferta >= 0 %}
+                        {% if moneda=='ARS' %}
                         <span class="text-decoration-line-through">${{producto.precio_ars}}</span> 
-                        <span>${{producto.in_oferta.precio}}</span>
+                        <span>${{producto.en_oferta}}</span>
+                        {% endif %}
+                        {% if moneda=='USD' %}
+                        <span class="text-decoration-line-through">${{producto.precio_usd}}</span> 
+                        <span>${{producto.en_oferta_usd}}</span>
+                        {% endif %}
                     {% else %}
+
+                    {% if moneda=='ARS' %}
                     <span>${{producto.precio_ars}}</span>
+                    {% endif %}
+                    {% if moneda=='USD' %}
+                    <span>${{producto.precio_usd}}</span>
+                    {% endif %}
                     {% endif %}
                 
                 </div>

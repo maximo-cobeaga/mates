@@ -68,7 +68,6 @@ def detalle_producto(request,categoria_slug ,producto_slug):
     try:
         producto = Productos.objects.get(categoria__slug=categoria_slug, slug=producto_slug)
         en_carrito = CarritoItem.objects.filter(carrito__carrito_id=_carrito_id(request), producto=producto).exists()
-        moneda = moneda()
     except Exception as e:
         raise e
     
