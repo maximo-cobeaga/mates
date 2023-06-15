@@ -151,7 +151,7 @@ if not DEBUG:
     # Turn on WhiteNoise storage backend that takes care of compressing static files
     # and creating unique names for each version so they can safely be cached forever.
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    
+
 MEDIA_ROOT = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -159,3 +159,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AWS_ACCESS_KEY_ID = 'AKIAXZNK3ND3EEBYLLNZ'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'mates-bucket'
+AWS_S3_SIGNATURE_NAME = 's3v4',
+AWS_S3_REGION_NAME = 'us-west-2'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL =  None
+AWS_S3_VERITY = True
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
