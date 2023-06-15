@@ -19,7 +19,7 @@ class Productos(models.Model):
     precio_ars = models.IntegerField()
     precio_usd = models.IntegerField(null=True)
     oferta = models.IntegerField(default=0, null=True)
-    imagen = models.ImageField(upload_to='fotos/productos')
+    imagen = models.ImageField(upload_to='fotos')
     slug = models.CharField(max_length=100, unique=True)
     stock = models.IntegerField()
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
@@ -44,7 +44,7 @@ class Productos(models.Model):
 
 class Banners(models.Model):
     titulo = models.CharField(max_length=100)
-    imagen = models.ImageField(upload_to='fotos/banners')
+    imagen = models.ImageField(upload_to='fotos')
 
     def __str__(self):
         return self.titulo

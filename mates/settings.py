@@ -93,8 +93,7 @@ DATABASES = {
     'default': dj_database_url.config(
         # Feel free to alter this value to suit your needs.
         default='postgresql://postgres:postgres@localhost:5432/mysite',
-        #default='postgres://productiondatabase_i02j_user:FBKmAZaVR1ozY26p2COFZoBZPSLpyI7t@dpg-ci1ndk1mbg56beidbn80-a.oregon-postgres.render.com/productiondatabase_i02j',
-        conn_max_age=600
+        #default='postgres://productiondatabase_i02j_user:FBKmAZaVR1ozY26p2COFZoBZPSLpyI7t@dpg-ci1ndk1mbg56beidbn80-a.oregon-postgres.render.com/productiondatabase_i02j'
     )
 }
 
@@ -153,7 +152,7 @@ if not DEBUG:
     # and creating unique names for each version so they can safely be cached forever.
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 MEDIA_URL = 'media/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
