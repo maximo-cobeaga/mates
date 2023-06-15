@@ -10,25 +10,23 @@
                 <h1 class="display-5 fw-bolder">{{producto.titulo}}</h1>
                 <div class="fs-5 mb-5">
 
-                    {% if producto.oferta >= 0 %}
-                        {% if moneda=='ARS' %}
-                        <span class="text-decoration-line-through">${{producto.precio_ars}}</span> 
-                        <span>${{producto.en_oferta}}</span>
-                        {% endif %}
-                        {% if moneda=='USD' %}
-                        <span class="text-decoration-line-through">${{producto.precio_usd}}</span> 
-                        <span>${{producto.en_oferta_usd}}</span>
-                        {% endif %}
-                    {% else %}
-
-                    {% if moneda=='ARS' %}
-                    <span>${{producto.precio_ars}}</span>
-                    {% endif %}
-                    {% if moneda=='USD' %}
-                    <span>${{producto.precio_usd}}</span>
-                    {% endif %}
-                    {% endif %}
-                
+                    {% if producto.oferta != 0 %}
+                                {% if moneda == 'ARS' %}
+                                <span class="text-muted text-decoration-line-through">${{ producto.precio_ars }}</span>
+                                {{ producto.en_oferta }}
+                                {% endif %}
+                                {% if moneda == 'USD' %}
+                                <span class="text-muted text-decoration-line-through">${{ producto.precio_usd }}</span>
+                                {{ producto.en_oferta_usd }}
+                                {% endif %}
+                            {% else %}
+                                {% if moneda == 'ARS' %}
+                                    {{ producto.precio_ars }}
+                                {% endif %}
+                                {% if moneda == 'USD' %}
+                                    {{ producto.precio_usd }}
+                                {% endif %}
+                            {% endif %}
                 </div>
                 <p class="lead">{{producto.descripcion}}</p>
                 {% if producto.stock <= 0 %}
