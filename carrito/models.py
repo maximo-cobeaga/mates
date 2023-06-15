@@ -18,24 +18,24 @@ class CarritoItem(models.Model):
     def en_oferta(self):
         if self.producto.oferta != 0:
             precio_total = (self.producto.precio_ars * (100 - self.producto.oferta)) /100
-            return precio_total
+            return round(precio_total)
         
     def en_oferta_usd(self):
         if self.producto.oferta != 0:
             precio_total = (self.producto.precio_usd * (100 - self.producto.oferta)) /100
-            return precio_total
+            return round(precio_total)
     
     def subtotal(self):
         if self.producto.oferta != 0:
-            return self.en_oferta()*self.cantidad
+            return round(self.en_oferta()*self.cantidad)
         else:
-            return self.producto.precio_ars*self.cantidad
+            return round(self.producto.precio_ars*self.cantidad)
         
     def subtotal_usd(self):
         if self.producto.oferta != 0:
-            return self.en_oferta()*self.cantidad
+            return round(self.en_oferta_usd()*self.cantidad)
         else:
-            return self.producto.precio_usd*self.cantidad
+            return round(self.producto.precio_usd*self.cantidad)
     
     def __unicode__(self):
         return self.producto

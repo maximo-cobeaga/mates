@@ -74,6 +74,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'tienda.context_processor.menu_links',
+                'tienda.context_processor.moneda',
                 'carrito.context_proccesor.contador',
             ],
         },
@@ -92,6 +93,7 @@ DATABASES = {
     'default': dj_database_url.config(
         # Feel free to alter this value to suit your needs.
         default='postgresql://postgres:postgres@localhost:5432/mysite',
+        #default='postgres://productiondatabase_i02j_user:FBKmAZaVR1ozY26p2COFZoBZPSLpyI7t@dpg-ci1ndk1mbg56beidbn80-a.oregon-postgres.render.com/productiondatabase_i02j',
         conn_max_age=600
     )
 }

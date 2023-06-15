@@ -13,3 +13,5 @@ def contador(request):
     except Carrito.DoesNotExist:
         carrito_contador=0
     return dict(carrito_contador=carrito_contador)
+
+

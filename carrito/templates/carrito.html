@@ -55,7 +55,8 @@
             <div class="price-wrap"> 
                 {% if moneda == 'ARS' %}
                     <var class="price">${{ item.subtotal }}</var> 
-                {% else %}
+                {% endif %}
+                {% if moneda == 'USD' %}
                     <var class="price">${{ item.subtotal_usd }}</var> 
                 {% endif %}
                 

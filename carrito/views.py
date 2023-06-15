@@ -68,19 +68,19 @@ def carrito(request, total=0, envio=0,totaltotal=0,cantidad=0, carrito_items=Non
         for carrito_item in carrito_items:
             if ars.estado == True:
                 if carrito_item.producto.oferta > 0:
-                    total += (((carrito_item.producto.precio_ars * (100 - carrito_item.producto.oferta))/100) * carrito_item.cantidad)
+                    total += round(((carrito_item.producto.precio_ars * (100 - carrito_item.producto.oferta))/100) * carrito_item.cantidad)
                 else:
-                    total += (carrito_item.producto.precio_ars * carrito_item.cantidad)
+                    total += round(carrito_item.producto.precio_ars * carrito_item.cantidad)
 
             if usd.estado == True:
                 if carrito_item.producto.oferta > 0:
-                    total += (((carrito_item.producto.precio_usd * (100 - carrito_item.producto.oferta))/100) * carrito_item.cantidad)
+                    total += round(((carrito_item.producto.precio_usd * (100 - carrito_item.producto.oferta))/100) * carrito_item.cantidad)
                 else:
-                    total += (carrito_item.producto.precio_usd * carrito_item.cantidad)
+                    total += round(carrito_item.producto.precio_usd * carrito_item.cantidad)
              
             cantidad += carrito_item.cantidad
-        envio = 1500
-        totaltotal = total + envio
+        envio = round(total * 0.1)
+        totaltotal = round(total + envio)
     except ObjectDoesNotExist:
         pass
 

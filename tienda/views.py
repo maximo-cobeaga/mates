@@ -10,16 +10,16 @@ from django.http import HttpResponse
 
 def tienda(request, categoria_slug=None):
 
-    usd = Moneda.objects.get(titulo='Dolar')
-    ars = Moneda.objects.get(titulo='Ars')
+    # usd = Moneda.objects.get(titulo='Dolar')
+    # ars = Moneda.objects.get(titulo='Ars')
 
-    if usd.estado == True:
-        moneda = 'USD'
-    if ars.estado == True:
-        moneda = 'ARS'
+    # if usd.estado == True:
+    #     moneda = 'USD'
+    # if ars.estado == True:
+    #     moneda = 'ARS'
 
-    print(usd.estado)
-    print(ars.estado)
+    # print(usd.estado)
+    # print(ars.estado)
 
     categorias = None
     if categoria_slug != None:
@@ -31,7 +31,7 @@ def tienda(request, categoria_slug=None):
         return render(request,'tienda.html', {
             'productos':productos,
             'counter': counter,
-            'moneda': moneda,
+            # 'moneda': moneda,
         })
     else:
         try:
@@ -44,7 +44,7 @@ def tienda(request, categoria_slug=None):
             return render(request,'tienda.html',{
                 'productos': page_producto,
                 'banners': banners,
-                'moneda': moneda,
+                # 'moneda': moneda,
             })
         except:
             productos = Productos.objects.filter(active=True)
@@ -55,15 +55,13 @@ def tienda(request, categoria_slug=None):
 
 def detalle_producto(request,categoria_slug ,producto_slug):
 
-    usd = Moneda.objects.get(titulo='Dolar')
-    ars = Moneda.objects.get(titulo='Ars')
+    # usd = Moneda.objects.get(titulo='Dolar')
+    # ars = Moneda.objects.get(titulo='Ars')
 
-    if usd.estado == True:
-        moneda = 'USD'
-    if ars.estado == True:
-        moneda = 'ARS'
-    else:
-        moneda = 'ARS'
+    # if usd.estado == True:
+    #     moneda = 'USD'
+    # if ars.estado == True:
+    #     moneda = 'ARS'
 
     try:
         producto = Productos.objects.get(categoria__slug=categoria_slug, slug=producto_slug)
@@ -74,7 +72,7 @@ def detalle_producto(request,categoria_slug ,producto_slug):
     context = {
     'producto': producto,
     'en_carrito':en_carrito,
-    'moneda': moneda
+    # 'moneda': moneda
     }
     return render(request, 'detalle_producto.html', context)
 
