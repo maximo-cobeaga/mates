@@ -19,7 +19,7 @@ class Productos(models.Model):
     precio_ars = models.IntegerField()
     precio_usd = models.IntegerField(null=True)
     oferta = models.IntegerField(default=0, null=True)
-    imagen = models.ImageField(upload_to='fotos')
+    imagen = models.ImageField(upload_to='fotos/banners')
     slug = models.CharField(max_length=100, unique=True)
     stock = models.IntegerField()
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE)
