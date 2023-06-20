@@ -22,7 +22,8 @@ from django.conf.urls.static import static
 from tienda import context_processor
 
 urlpatterns = [
-    path('admin', admin.site.urls),
+    path('admin/', admin.site.urls),
+    path('blog/', include('blog.urls')),
     path('', views.tienda, name='tienda'),
     path('cambiar_estado/<str:moneda>', views.cambiar_estado, name='cambiar_estado'),
     path('<slug:categoria_slug>', views.tienda , name='produtos_categoria'),

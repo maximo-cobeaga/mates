@@ -90,3 +90,4 @@ def cambiar_estado(request, moneda):
         print(mon.titulo,' - ',mon.estado)
 
     return redirect('tienda')
+

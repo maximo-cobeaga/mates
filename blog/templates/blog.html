@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<header>
+    <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+
+            <div class="carousel-item active" style="height: 400px;">
+                <img src="{% static 'img/pexels-los-muertos-crew-8279912.jpg' %}" class="d-block w-100" alt="Bannner"
+                    style="height: 100%; object-fit: cover; filter: brightness(0.6);">
+                <div class="carousel-caption top-0 mt-4">
+                    <p class="mt-5 fs-3 text-uppercase">
+                        Mates del Mar
+                    </p>
+                    <h1 class="display-1 fw-bolder text-capitalize">Blog Matero</h1>
+                    <a href="{% url 'tienda' %}" class="btn btn-primary ppx-4 py-2 fs-5 mt-5">Tienda</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</header>
+
+<section class="py-5 container">
+    {% if cont > 0 %}
+        {% for p in posts %}
+        <div class="card mb-3 w-100 ">
+            <div class="row g-0">
+            <div class="col-md-4">
+                <iframe  class="img-fluid rounded-start" src="https://www.youtube.com/embed/{{p.link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                <h5 class="card-title">{{p.titulo}}</h5>
+                <p class="card-text">{{p.descripcion}}
+                </p>
+                <p class="card-text"><small class="text-body-secondary">{{p.fecha}}</small></p>
+                </div>
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+    <div class="text-center">
+        <h2 class="text-center">Aun no hay blogs todavia</h2>
+        <a href="{% url 'tienda' %}">Haz click aqui para volver a la tienda</a>
+    </div>
+        
+    {% endif %}
+</section>
+
+{% endblock %}

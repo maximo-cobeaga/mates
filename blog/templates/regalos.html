@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<header>
+    <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+
+            <div class="carousel-item active" style="height: 400px;">
+                <img src="{% static 'img/pexels-los-muertos-crew-8279912.jpg' %}" class="d-block w-100" alt="Bannner"
+                    style="height: 100%; object-fit: cover; filter: brightness(0.6);">
+                <div class="carousel-caption top-0 mt-4">
+                    <p class="mt-5 fs-3 text-uppercase">
+                        Mates del Mar
+                    </p>
+                    <h1 class="display-1 fw-bolder text-capitalize">Regalos Empresariales</h1>
+                    <a href="{% url 'tienda' %}" class="btn btn-primary ppx-4 py-2 fs-5 mt-5">Tienda</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</header>
+
+<section class="container" style="position: static;"> 
+    <div class="text-center">
+        <p class="fs-3 fw-normal">
+            En Mates del Mar buscamos que tengas el regalo ideal para tus proveedores, clientes o personal ofreciendo la mejor calidad en nuestro producto. 
+        </p>
+        <img class="img-fluid w-50" src="{% static 'img\img(10).jpg' %}" alt="">
+        <p class="fs-3 fw-normal">
+            .Elegís el producto que mas te guste <br>
+            .Nos mandas el logo de tu marca o lo que desees personalizar <br>
+            .Te presupuestamos la cantidad que vos quieras 
+        </p>
+
+        <div class="text-center p-3 border-top border-bottom border-secondary">
+            <a class="p-1 btn btn-info btn-lg" href="https://api.whatsapp.com/send/?phone=542235733782&text&type=phone_number&app_absent=0">Nuestro whatsapp</a>
+            <p class="p-1 fs-3 fw-normal" >!Contactanos a nuestro whatsapp¡</p>
+        </div>
+        <div class="container text-center p-3">
+            <div class="row">
+              <div class="col w-30">
+                <img class="img-fluid" src="{% static 'img/112.jpg' %}" alt="imagen">
+              </div>
+              <div class="col w-30">
+                <img class="img-fluid" src="{% static 'img/37.jpg' %}" alt="imagen">
+              </div>
+              <div class="col w-30">
+                <img class="img-fluid" src="{% static 'img/212.jpg' %}" alt="imagen">
+              </div>
+            </div>
+            <div class="row p-2">
+              <div class="col w-30">
+                <img class="img-fluid" src="{% static 'img/111.jpg' %}" alt="imagen">
+              </div>
+              <div class="col w-30">
+                <img class="img-fluid" src="{% static 'img/Placas(2).jpg' %}" alt="imagen">
+              </div>
+              <div class="col w-30">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/0Do-FMmm9s8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              </div>
+            </div>
+          </div>
+    </div>
+</section>
+
+{% endblock %}

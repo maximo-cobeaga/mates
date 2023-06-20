@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<header>
+    <div id="carouselExample" class="carousel slide">
+        <div class="carousel-inner">
+
+            <div class="carousel-item active" style="height: 500px;">
+                <img src="{% static 'img/pexels-los-muertos-crew-8279912.jpg' %}" class="d-block w-100" alt="{{ banner.titulo }}"
+                    style="height: 100%; object-fit: cover; filter: brightness(0.6);">
+                <div class="carousel-caption top-0 mt-4">
+                    <p class="mt-5 fs-3 text-uppercase">
+                        Mates del Mar
+                    </p>
+                    <h1 class="display-1 fw-bolder text-capitalize">Politicas de cambios y devoluciones</h1>
+                    <a href="{% url 'tienda' %}" class="btn btn-primary ppx-4 py-2 fs-5 mt-5">Tienda</a>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</header>
+
+
+<section class="container">
+    <div class="text-center p-5">
+        <p class="fs-3 fw-normal">
+            Nuestros productos tienen garantía de 30 días por fallas de fábrica. La garantía NO cubre un mal uso del
+            producto ni un accidente doméstico -caídas, golpes, entre otros-.
+            Recordamos que nuestros mates son de calabaza, y este al ser un fruto, el tamaño VARÍA y no existen mates
+            idénticos. Dicho esto, el tamaño del mate NO es motivo de cambio.
+        </p>
+        <div class="">
+            <img style="height: 500px;" class="img-fluid p-5" src="{% static 'img/Placas(1).jpg' %}" alt="">
+        </div>
+        
+    </div>
+
+</section>
+
+
+{% endblock %}
