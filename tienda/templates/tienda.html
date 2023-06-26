@@ -2,6 +2,7 @@
 
 {% block content %}
 
+<body  onload="mostrarPopup()">
 {% if counter == 0 %}
 <div class="text-center  p-5">
     <h3 class=" p-3">Aun no hay productos de esta Categoria</h3>
@@ -41,6 +42,41 @@
 <!-- Modal -->
 <!-- Section-->
 
+<div id="popup" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Seleccionar Pais</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="cerrarPopup()" ></button>
+              </div>
+              <div class="modal-body">
+                <div class="d-grid gap-2 col-6 mx-auto w-100">
+                    <form method="POST" action="{% url 'cambiar_estado' 'Dolar' %}">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-primary w-100">
+                            Other Country
+                        </button>
+                    </form>
+
+                    <form method="POST" action="{% url 'cambiar_estado' 'Ars' %}">
+                        {% csrf_token %}
+                        <button class="btn btn-outline-primary w-100">
+                            Argentina
+                        </button>
+                    </form>
+
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="cerrarPopup()">Cerrar y Guardar</button>
+              </div>
+            </div>
+    </div>
+
+    
+  </div>
+
+
 <section class="py-5">
     <h2 class="text-center">Nuestro Productos</h2>
     <div class="container px-4 px-lg-5 mt-5">
@@ -73,21 +109,21 @@
                             </div>
                             <!-- Product price-->
                             {% if producto.oferta != 0 %}
-                                {% if moneda == 'ARS' %}
-                                <span class="text-muted text-decoration-line-through">${{ producto.precio_ars }}</span>
-                                {{ producto.en_oferta }}
-                                {% endif %}
-                                {% if moneda == 'USD' %}
-                                <span class="text-muted text-decoration-line-through">${{ producto.precio_usd }}</span>
-                                {{ producto.en_oferta_usd }}
-                                {% endif %}
+                            {% if moneda == 'ARS' %}
+                            <span class="text-muted text-decoration-line-through">${{ producto.precio_ars }}</span>
+                            {{ producto.en_oferta }}
+                            {% endif %}
+                            {% if moneda == 'USD' %}
+                            <span class="text-muted text-decoration-line-through">${{ producto.precio_usd }}</span>
+                            {{ producto.en_oferta_usd }}
+                            {% endif %}
                             {% else %}
-                                {% if moneda == 'ARS' %}
-                                    {{ producto.precio_ars }}
-                                {% endif %}
-                                {% if moneda == 'USD' %}
-                                    {{ producto.precio_usd }}
-                                {% endif %}
+                            {% if moneda == 'ARS' %}
+                            {{ producto.precio_ars }}
+                            {% endif %}
+                            {% if moneda == 'USD' %}
+                            {{ producto.precio_usd }}
+                            {% endif %}
                             {% endif %}
                         </div>
                     </div>
@@ -116,3 +152,6 @@
     </div>
 </section>
 {% endblock %}
+
+    
+</body>

@@ -76,7 +76,6 @@ def detalle_producto(request,categoria_slug ,producto_slug):
     }
     return render(request, 'detalle_producto.html', context)
 
-
 def cambiar_estado(request, moneda):
     if request.method == 'POST':
         mon = Moneda.objects.get(titulo=moneda)
